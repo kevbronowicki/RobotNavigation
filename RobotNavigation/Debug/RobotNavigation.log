@@ -1,2 +1,12 @@
-﻿  Main.cpp
+﻿  Map.cpp
+C:\Users\kevbr\OneDrive\Swinburne\2020_SEM1\COS30019\Programs\RobotNavigation\RobotNavigation\Map.cpp(51,25): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\kevbr\OneDrive\Swinburne\2020_SEM1\COS30019\Programs\RobotNavigation\RobotNavigation\Map.cpp(50,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   RobotNavigation.vcxproj -> C:\Users\kevbr\OneDrive\Swinburne\2020_SEM1\COS30019\Programs\RobotNavigation\Debug\RobotNavigation.exe

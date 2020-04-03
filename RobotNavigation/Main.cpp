@@ -44,7 +44,6 @@ Map readMapData(string aFileName, Point& aPoint) {
             for (int x = lPoint.x; x < (lPoint.x + lWidth); x++) {
                 for (int y = lPoint.y; y < (lPoint.y + lHeight); y++) {
                     lMap.setStatus({ x, y }, Wall);
-                    //cout << x << " " << y << endl;
                 }
             }
         }
@@ -59,12 +58,29 @@ Map readMapData(string aFileName, Point& aPoint) {
 int main(int argc, char* argv[]) {
     string a;
     Point lInitialState;
-    Map lMapData;
+    Map lMap = readMapData("RobotNav-test.txt", lInitialState);
 
-    lMapData = readMapData("RobotNav-test.txt", lInitialState);
+    sf::RenderWindow window(sf::VideoMode(100, 100), "Robot Navigation");
 
-    cout << lMapData;
+    cout << lMap;
 
+    while (window.isOpen()) {
+        // check for "close request" of window and close if requested
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        // clear the window with black color
+        window.clear(sf::Color::Black);
+
+        // draw objects
+        lMap.draw(window);
+    
+        // end the current frame
+        window.display();
+    }
     return 0;
 }
 
