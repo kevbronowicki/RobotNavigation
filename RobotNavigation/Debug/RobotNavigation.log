@@ -1,10 +1,10 @@
 ﻿  Map.cpp
-C:\Users\kevbr\OneDrive\Swinburne\2020_SEM1\COS30019\Programs\RobotNavigation\RobotNavigation\Map.cpp(51,25): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\kevbr\OneDrive\Swinburne\2020_SEM1\COS30019\Programs\RobotNavigation\RobotNavigation\Map.cpp(50,27): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\kevbr\OneDrive\Swinburne\2020_SEM1\COS30019\Programs\RobotNavigation\RobotNavigation\Map.cpp(50,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\kevbr\OneDrive\Swinburne\2020_SEM1\COS30019\Programs\RobotNavigation\RobotNavigation\Map.cpp(49,54): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
           with
           [
               T=float

@@ -2,72 +2,70 @@
 
 using namespace std;
 
-#define CELL_SIZE 60
-#define SPACER 3
+constexpr unsigned c_cellSize = 60;
+constexpr unsigned c_spacer = 3;
 
 Map::Map() {
     fWidth = 0;
     fHeight = 0;
-    for (int i = 0; i < ARRAY_MAX_SIZE; i++) {
-        for (int j = 0; j < ARRAY_MAX_SIZE; j++) {
-            fMapArray[i][j] = Nil;
-        }
+}
+
+void Map::setSize(unsigned aWidth, unsigned aHeight) {
+    fWidth = aWidth;
+    fHeight = aHeight;
+    fMapArray.resize(fWidth * fHeight, Floor);
+}
+
+void Map::setStatus(unsigned aX, unsigned aY, Status aStatus) {
+    if (aX < fWidth && aY < fHeight) {
+        fMapArray[aX * fHeight + aY] = aStatus;
     }
 }
 
-void Map::setStatus(int x, int y, Status aStatus) {
-    fMapArray[x][y] = aStatus;
-}
-
 void Map::setStatus(Point aPoint, Status aStatus) {
-    fMapArray[aPoint.x][aPoint.y] = aStatus;
+    fMapArray[aPoint.x * fHeight + aPoint.y] = aStatus;
 }
 
-Status Map::getStatus(Point aPoint) {
-    if (aPoint.x <= fWidth && aPoint.y <= fHeight) {
-        if (aPoint.x >= 0 && aPoint.y >= 0) {
-            Status Result = fMapArray[aPoint.x][aPoint.y];
-            return Result;
-        }
+Status Map::getStatus(unsigned aX, unsigned aY) {
+    if (aX <= fWidth && aY <= fHeight) {
+        return fMapArray[aX * fHeight + aY];
     }
     return Nil;
 }
 
 void Map::draw(sf::RenderWindow& aWindow) {
     // flattened 2d vector of cells to be drawn
-    // accessing flattened vector: lCells[3][5] --> lCells[(3 * fHeight) + 5]
     vector<sf::RectangleShape> lCells(fWidth * fHeight);
 
     // default cell for changing and adding to vector
-    sf::RectangleShape lDefaultCell(sf::Vector2f(CELL_SIZE, CELL_SIZE));
+    sf::RectangleShape lDefaultCell(sf::Vector2f(c_cellSize, c_cellSize));
     sf::RectangleShape lCell;
 
     // loop through map array, setting position and colour of each cooresponding cell
     // and adding cell to vector
-    for (int y = 0; y < fHeight; y++) {
-        for (int x = 0; x < fWidth; x++) {
+    for (unsigned y = 0; y < fHeight; y++) {
+        for (unsigned x = 0; x < fWidth; x++) {
             lCell = lDefaultCell;
-            lCell.setPosition(sf::Vector2f((SPACER + ((CELL_SIZE + SPACER) * x)), 
-                (SPACER + ((CELL_SIZE + SPACER) * y)) ));
+            lCell.setPosition(sf::Vector2f((c_spacer + ((c_cellSize + c_spacer) * x)), 
+                (c_spacer + ((c_cellSize + c_spacer) * y)) ));
 
-            if (fMapArray[x][y] == Wall) {
+            if (getStatus(x, y) == Wall) {
                 lCell.setFillColor(sf::Color(128, 128, 128));
             }
-            else if (fMapArray[x][y] == Goal) {
+            else if (getStatus(x, y) == Goal) {
                 lCell.setFillColor(sf::Color::Green);
             }
             else {
                 lCell.setFillColor(sf::Color::White);
             }
-
             lCells[(x * fHeight) + y] = lCell;
         }
     }
 
     // determine size of windows to be create
     sf::Vector2u fSize;
-    fSize.x = SPACER + fWidth * (CELL_SIZE + SPACER);
-    fSize.y = SPACER + fHeight * (CELL_SIZE + SPACER);
+    fSize.x = c_spacer + fWidth * (c_cellSize + c_spacer);
+    fSize.y = c_spacer + fHeight * (c_cellSize + c_spacer);
 
     // set window to calculated size if not already that size
     if (aWindow.getSize() != fSize) {
@@ -81,9 +79,9 @@ void Map::draw(sf::RenderWindow& aWindow) {
 }
 
 std::ostream& operator<<(std::ostream& aOstream, const Map& aMap) {
-    for (int y = 0; y < aMap.fHeight; y++) {
-        for (int x = 0; x < aMap.fWidth; x++) {
-            aOstream << aMap.fMapArray[x][y] << " ";
+    for (unsigned y = 0; y < aMap.fHeight; y++) {
+        for (unsigned x = 0; x < aMap.fWidth; x++) {
+            aOstream << aMap.fMapArray[x * aMap.fHeight + y] << " ";
         }
         cout << endl;
     }

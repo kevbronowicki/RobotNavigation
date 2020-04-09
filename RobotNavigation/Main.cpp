@@ -10,7 +10,7 @@ Map readMapData(string aFileName, Point& aPoint) {
     ifstream lInput(aFileName);
     Map lMap;
     char lChar; // dummy characters (seperators)
-    int lHeight, lWidth;
+    unsigned lHeight, lWidth;
     Point lPoint;
 
     if (!lInput.good()) {
@@ -18,8 +18,7 @@ Map readMapData(string aFileName, Point& aPoint) {
     }
     else {
         lInput >> lChar >> lHeight >> lChar >> lWidth >> lChar;
-        lMap.setHeight(lHeight);
-        lMap.setWidth(lWidth);
+        lMap.setSize(lWidth, lHeight);
         lInput >> lChar >> aPoint.x >> lChar >> aPoint.y >> lChar;
         for (lPoint.x = 0; lPoint.x < lWidth; lPoint.x++) {
             for (lPoint.y = 0; lPoint.y < lHeight; lPoint.y++) {
@@ -41,8 +40,8 @@ Map readMapData(string aFileName, Point& aPoint) {
         }
         
         while (lInput >> lChar >> lPoint.x >> lChar >> lPoint.y >> lChar >> lWidth >> lChar >> lHeight >> lChar) {
-            for (int x = lPoint.x; x < (lPoint.x + lWidth); x++) {
-                for (int y = lPoint.y; y < (lPoint.y + lHeight); y++) {
+            for (unsigned x = lPoint.x; x < (lPoint.x + lWidth); x++) {
+                for (unsigned y = lPoint.y; y < (lPoint.y + lHeight); y++) {
                     lMap.setStatus({ x, y }, Wall);
                 }
             }

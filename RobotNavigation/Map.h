@@ -3,8 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector> 
 
-#define ARRAY_MAX_SIZE 20
-
 enum Status {
     Floor,
     Wall,
@@ -13,28 +11,29 @@ enum Status {
 };
 
 struct Point {
-    int x;
-    int y;
+    unsigned x;
+    unsigned y;
 };
 
 class Map {
 private:
-    int fHeight;
-    int fWidth;
-    Status fMapArray[ARRAY_MAX_SIZE][ARRAY_MAX_SIZE];
+    unsigned fHeight;
+    unsigned fWidth;
+    // flattened 2d vector of cells in Map
+    // accessing fMapArray[3][5] == fMapArray[(3 * fHeight) + 5]
+    std::vector<Status> fMapArray;
 
 public:
     Map();
 
-    void setHeight(int aHeight) { fHeight = aHeight; }
-    void setWidth(int aWidth) { fWidth = aWidth; }
+    void setSize(unsigned aWidth, unsigned aHeight);
 
-    int getHeight() { return fHeight; }
-    int getWidth() { return fWidth; }
+    unsigned getHeight() { return fHeight; }
+    unsigned getWidth() { return fWidth; }
 
-    void setStatus(int x, int y, Status aStatus);
+    void setStatus(unsigned aX, unsigned aY, Status aStatus);
     void setStatus(Point aPoint, Status aStatus);
-    Status getStatus(Point aPoint);
+    Status getStatus(unsigned aX, unsigned aY);
 
     // draws cells of map with status coloured
     void draw(sf::RenderWindow& window);
