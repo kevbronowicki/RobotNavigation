@@ -145,14 +145,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BFSearch.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="SearchMethod.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="RobotNav-test.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BFSearch.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Robot.h" />
+    <ClInclude Include="SearchMethod.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

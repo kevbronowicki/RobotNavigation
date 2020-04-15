@@ -3,19 +3,27 @@
 #include <SFML/Graphics.hpp>
 #include <vector> 
 
-enum Status {
+enum Status 
+{
     Floor,
     Wall,
     Goal,
     Nil
 };
 
-struct Point {
+struct Point 
+{
     unsigned x;
     unsigned y;
+
+    bool operator==(const Point& aRight) const
+    {
+        return x == aRight.x && y == aRight.y;
+    }
 };
 
-class Map {
+class Map 
+{
 private:
     unsigned fHeight;
     unsigned fWidth;
@@ -34,6 +42,7 @@ public:
     void setStatus(unsigned aX, unsigned aY, Status aStatus);
     void setStatus(Point aPoint, Status aStatus);
     Status getStatus(unsigned aX, unsigned aY);
+    Status getStatus(Point aPoint);
 
     // draws cells of map with status coloured
     void draw(sf::RenderWindow& window);
