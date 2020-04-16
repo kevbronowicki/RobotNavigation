@@ -19,7 +19,6 @@ void Robot::draw()
 
 string Robot::getPath()
 {
-    Node* lNode = fSolution;
     string lResult = "";
     if (!goalFound())
     {
@@ -29,13 +28,12 @@ string Robot::getPath()
     {
         cout << "Number of nodes: " << fSearchMethod->getNumOfNodes() << endl;
         
-        while (lNode != NULL)
+        for (Node* n : fSolution->getPredecessors())
         {
-            if (lNode->getParent() != NULL)
+            if (n->getParent() != NULL)
             {
-                lResult = lNode->getAction() + "; " + lResult;
+                lResult = n->getAction() + "; " + lResult;
             }
-            lNode = lNode->getParent();
         }
         
     }
