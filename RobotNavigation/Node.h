@@ -1,5 +1,6 @@
 #pragma once
 #include "Map.h"
+#include <list>
 
 class Node
 {
@@ -19,4 +20,5 @@ public:
     std::string getAction() { return fAction; }
     int getCost() { return fCost; }
     unsigned getDistance() { return fDistance; }
+    std::list<Node*> getPredecessors();
 };

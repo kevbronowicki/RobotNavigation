@@ -18,3 +18,16 @@ Node::Node(Point aState, Node* aParent, string aAction, int aCost, unsigned aDis
     fCost = aCost;
     fDistance = aDistance;
 }
+
+list<Node*> Node::getPredecessors()
+{
+    list<Node*> lPredecessors;
+    Node* lNode = fParent;
+
+    while (lNode != NULL)
+    {
+        lPredecessors.push_back(lNode);
+        lNode = lNode->getParent();
+    }
+    return lPredecessors;
+}
