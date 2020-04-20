@@ -24,14 +24,18 @@ int main(int argc, char* argv[])
     Point lInitialState;
     Map lMap = readMapData(argv[1], lInitialState);
 
-    
-
     cout << lMap << endl;
-
-    Robot lRobot(lInitialState, "BFS");
-    lRobot.search(lMap);
-    cout << lRobot.getPath() << endl;
-
+    try
+    {
+        Robot lRobot(lInitialState, argv[2]);
+        lRobot.search(lMap);
+        cout << lRobot.getPath() << endl;
+    }
+    catch (exception e)
+    {
+        cerr << e.what() << endl;
+    }
+    
     //sf::RenderWindow window(sf::VideoMode(100, 100), "Robot Navigation");
     //while (window.isOpen()) 
     //{

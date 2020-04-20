@@ -5,7 +5,19 @@ using namespace std;
 Robot::Robot(Point aInitialPoint, string aMethod)
 {
     fInitialNode = new Node(aInitialPoint, NULL, "none");
-    fSearchMethod = new BFSearch();
+    if (aMethod == "dfs")
+    {
+        fSearchMethod = new DFSearch();
+    }
+    else if (aMethod == "bfs")
+    {
+        fSearchMethod = new BFSearch();
+    }
+    else
+    {
+        throw std::runtime_error("Not a valid search method.\n");
+    }
+    
 }
 
 void Robot::search(Map aMap)
@@ -27,7 +39,7 @@ string Robot::getPath()
     else
     {
         cout << "Number of nodes: " << fSearchMethod->getNumOfNodes() << endl;
-        
+        lResult = fSolution->getAction() + "; ";
         for (Node* n : fSolution->getPredecessors())
         {
             if (n->getParent() != NULL)

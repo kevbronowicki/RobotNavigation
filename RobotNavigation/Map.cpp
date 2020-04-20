@@ -33,11 +33,14 @@ void Map::setStatus(Point aPoint, Status aStatus)
 
 Status Map::getStatus(unsigned aX, unsigned aY) 
 {
-    if (aX <= fWidth && aY <= fHeight) 
+    if (aX < fWidth && aY < fHeight) 
     {
         return fMapArray[aX * fHeight + aY];
     }
-    return Nil;
+    else
+    {
+        return Nil;
+    }
 }
 
 Status Map::getStatus(Point aPoint)

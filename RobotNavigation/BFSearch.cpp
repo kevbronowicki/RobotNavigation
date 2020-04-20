@@ -34,7 +34,7 @@ Node* BFSearch::search(Map aMap, Node* aInitialNode)
         bool lRepeated = false;
         for (Node* child : expand(lNode, aMap))
         {
-            for (Point p : fExplored)
+            /*for (Point p : fExplored)
             {
                 if (child->getState() == p)
                 {
@@ -50,16 +50,16 @@ Node* BFSearch::search(Map aMap, Node* aInitialNode)
                     lRepeated = true;
                     break;
                 }
-            }
+            }*/
 
-            /*for (Node* n : child->getPredecessors())
+            for (Node* n : child->getPredecessors())
             {
                 if (child->getState() == n->getState())
                 {
-                    lCheck = true;
+                    lRepeated = true;
                     break;
                 }
-            }*/
+            }
 
             // if child node has goal state return child
             if (aMap.getStatus(child->getState()) == Goal)
@@ -76,8 +76,7 @@ Node* BFSearch::search(Map aMap, Node* aInitialNode)
             {
                 fFrontier.push_back(child);
                 fNumOfNodes++;
-            }
-                
+            }      
         }
 
     }

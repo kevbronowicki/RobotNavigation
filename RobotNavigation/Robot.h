@@ -3,6 +3,7 @@
 #include "SearchMethod.h"
 #include "Node.h"
 #include "BFSearch.h"
+#include "DFSearch.h"
 #include <list>
 
 class Robot

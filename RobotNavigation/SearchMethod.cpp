@@ -3,46 +3,53 @@
 
 using namespace std;
 
-std::unordered_map<std::string, Point> SearchMethod::getActions(Map aMap, Point aPoint)
+list<pair<string, Point>> SearchMethod::getActions(Map aMap, Point aPoint)
 {
     Point lPoint;
-    std::unordered_map<string, Point> lActions;
+    list<pair<string, Point>> lActions;
 
     // check up
     lPoint.x = aPoint.x;
     lPoint.y = aPoint.y - 1;
     if (!(aMap.getStatus(lPoint) == Nil || aMap.getStatus(lPoint) == Wall))
     {
-        lActions.insert({ "up", lPoint });
+        lActions.push_back(make_pair("up", lPoint));
     }
     // check left
     lPoint.x = aPoint.x - 1;
     lPoint.y = aPoint.y;
     if (!(aMap.getStatus(lPoint) == Nil || aMap.getStatus(lPoint) == Wall))
     {
-        lActions.insert({ "left", lPoint });
+        lActions.push_back(make_pair("left", lPoint));
     }
     // check down
     lPoint.x = aPoint.x;
     lPoint.y = aPoint.y + 1;
     if (!(aMap.getStatus(lPoint) == Nil || aMap.getStatus(lPoint) == Wall))
     {
-        lActions.insert({ "down", lPoint });
+        lActions.push_back(make_pair("down", lPoint));
     }
     // check right
     lPoint.x = aPoint.x + 1;
     lPoint.y = aPoint.y;
     if (!(aMap.getStatus(lPoint) == Nil || aMap.getStatus(lPoint) == Wall))
     {
-        lActions.insert({ "right", lPoint });
+        lActions.push_back(make_pair("right", lPoint));
     }
+
+    for (auto const& x : lActions)
+    {
+        cout << x.first << " ";
+    }
+    cout << endl;
+
     return lActions;
 }
 
-std::list<Node*> SearchMethod::expand(Node* aNode, Map aMap)
+list<Node*> SearchMethod::expand(Node* aNode, Map aMap)
 {
     list<Node*> lSuccessors;
-    unordered_map<string, Point> lActions = getActions(aMap, aNode->getState());
+    list<pair<string, Point>> lActions = getActions(aMap, aNode->getState());
 
     for (auto const& p : lActions)
     {
