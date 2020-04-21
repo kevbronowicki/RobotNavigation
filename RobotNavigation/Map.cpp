@@ -24,11 +24,15 @@ void Map::setStatus(unsigned aX, unsigned aY, Status aStatus)
     {
         fMapArray[aX * fHeight + aY] = aStatus;
     }
+    if (aStatus == Goal)
+    {
+        fGoals.push_back({ aX, aY });
+    }
 }
 
 void Map::setStatus(Point aPoint, Status aStatus) 
 {
-    fMapArray[aPoint.x * fHeight + aPoint.y] = aStatus;
+    setStatus(aPoint.x, aPoint.y, aStatus);
 }
 
 Status Map::getStatus(unsigned aX, unsigned aY) 

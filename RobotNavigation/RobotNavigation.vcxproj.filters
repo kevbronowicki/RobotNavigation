@@ -36,6 +36,9 @@
     <ClCompile Include="DFSearch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GBFSearch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="RobotNav-test.txt" />
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DFSearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GBFSearch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

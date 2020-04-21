@@ -27,6 +27,7 @@ class Map
 private:
     unsigned fHeight;
     unsigned fWidth;
+    std::vector<Point> fGoals;
     // flattened 2d vector of cells in Map
     // accessing fMapArray[3][5] == fMapArray[(3 * fHeight) + 5]
     std::vector<Status> fMapArray;
@@ -38,6 +39,7 @@ public:
 
     unsigned getHeight() { return fHeight; }
     unsigned getWidth() { return fWidth; }
+    std::vector<Point> getGoals() { return fGoals; }
 
     void setStatus(unsigned aX, unsigned aY, Status aStatus);
     void setStatus(Point aPoint, Status aStatus);

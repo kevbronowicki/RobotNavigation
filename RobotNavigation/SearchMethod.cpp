@@ -1,5 +1,7 @@
 #include "SearchMethod.h"
 #include <iostream>
+#include <cmath>        // for std::abs()
+#include <vector>
 
 using namespace std;
 
@@ -46,16 +48,40 @@ list<pair<string, Point>> SearchMethod::getActions(Map aMap, Point aPoint)
     return lActions;
 }
 
-list<Node*> SearchMethod::expand(Node* aNode, Map aMap)
+unsigned SearchMethod::heuristic(Point aState, Map aMap)
+{
+    vector<unsigned> lDistances;
+    for (auto const& g : aMap.getGoals())
+    {
+        // calculate manhattan distance to a goal
+        lDistances.push_back(abs((float)g.x - (float)aState.x) +
+            abs((float)g.y - (float)aState.y));
+    }
+    sort(lDistances.begin(), lDistances.end());
+    // return shortest distance to a goal
+    return lDistances.front();
+}
+
+list<Node*> SearchMethod::expand(Node* aNode, Map aMap, bool aInformed)
 {
     list<Node*> lSuccessors;
     list<pair<string, Point>> lActions = getActions(aMap, aNode->getState());
 
-    for (auto const& p : lActions)
+    if (aInformed)
     {
-        lSuccessors.push_back(new Node(p.second, aNode, p.first));
+        for (auto const& p : lActions)
+        {
+            lSuccessors.push_back(new Node(p.second, aNode, p.first, 
+                aNode->getCost()+1, heuristic(aNode->getState(), aMap)));
+        }
     }
-
+    else
+    {
+        for (auto const& p : lActions)
+        {
+            lSuccessors.push_back(new Node(p.second, aNode, p.first));
+        }
+    }
     return lSuccessors;
 }
 

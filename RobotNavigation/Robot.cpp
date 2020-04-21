@@ -16,6 +16,10 @@ Robot::Robot(Point aInitialPoint, string aMethod)
     {
         fSearchMethod = new BFSearch();
     }
+    else if (aMethod == "gbfs")
+    {
+        fSearchMethod = new GBFSearch();
+    }
     else
     {
         throw std::runtime_error("Not a valid search method.\n");

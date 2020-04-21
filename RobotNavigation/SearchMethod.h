@@ -9,7 +9,8 @@ class SearchMethod
 protected:
     unsigned fNumOfNodes;
     std::list<std::pair<std::string, Point>> getActions(Map aMap, Point aPoint);
-    std::list<Node*> expand(Node* aNode, Map aMap);
+    unsigned heuristic(Point aState, Map aMap);
+    std::list<Node*> expand(Node* aNode, Map aMap, bool aInformed = false);
 public:
     SearchMethod();
     

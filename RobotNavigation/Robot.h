@@ -5,6 +5,7 @@
 #include "Node.h"
 #include "BFSearch.h"
 #include "DFSearch.h"
+#include "GBFSearch.h"
 #include <list>
 
 class Robot
