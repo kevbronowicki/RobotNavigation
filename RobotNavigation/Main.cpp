@@ -30,32 +30,33 @@ int main(int argc, char* argv[])
         Robot lRobot(lInitialState, argv[2]);
         lRobot.search(lMap);
         cout << lRobot.getPath() << endl;
+
+        sf::RenderWindow window(sf::VideoMode(100, 100), "Robot Navigation");
+        while (window.isOpen())
+        {
+            // check for "close request" of window and close if requested
+            sf::Event event;
+            while (window.pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed)
+                    window.close();
+            }
+
+            // clear the window with black color
+            window.clear(sf::Color::Black);
+
+            // draw objects
+            lMap.draw(window);
+            lRobot.draw(window);
+            // end the current frame
+            window.display();
+        }
     }
     catch (exception e)
     {
         cerr << e.what() << endl;
     }
     
-    //sf::RenderWindow window(sf::VideoMode(100, 100), "Robot Navigation");
-    //while (window.isOpen()) 
-    //{
-    //    // check for "close request" of window and close if requested
-    //    sf::Event event;
-    //    while (window.pollEvent(event)) 
-    //    {
-    //        if (event.type == sf::Event::Closed)
-    //            window.close();
-    //    }
-
-    //    // clear the window with black color
-    //    window.clear(sf::Color::Black);
-
-    //    // draw objects
-    //    lMap.draw(window);
-    //
-    //    // end the current frame
-    //    window.display();
-    //}
     return 0;
 }
 
