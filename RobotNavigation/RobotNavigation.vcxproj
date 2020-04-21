@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AStarSearch.cpp" />
     <ClCompile Include="BFSearch.cpp" />
     <ClCompile Include="DFSearch.cpp" />
     <ClCompile Include="GBFSearch.cpp" />
@@ -158,6 +159,7 @@
     <Text Include="RobotNav-test.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AStarSearch.h" />
     <ClInclude Include="BFSearch.h" />
     <ClInclude Include="DFSearch.h" />
     <ClInclude Include="GBFSearch.h" />

@@ -6,6 +6,7 @@
 #include "BFSearch.h"
 #include "DFSearch.h"
 #include "GBFSearch.h"
+#include "AStarSearch.h"
 #include <list>
 
 class Robot
