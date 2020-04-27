@@ -27,10 +27,10 @@
 *.lib
 
 # Executables
-# *.exe
+*.exe
 *.out
 *.app
 
 # Directories
-RobotNavigation/Debug/
-RobotNavigation/x64/
+Debug/
+x64/
