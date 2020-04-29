@@ -2,8 +2,8 @@
 
 using namespace std;
 
-constexpr unsigned c_cellSize = 60;
-constexpr unsigned c_spacer = 3;
+constexpr unsigned c_cellSize = 40;
+constexpr unsigned c_spacer = 2;
 
 Map::Map() 
 {

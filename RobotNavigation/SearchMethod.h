@@ -19,4 +19,7 @@ public:
     virtual Node* search(Map aMap, Node* aInitialNode);
 
     unsigned getNumOfNodes() { return fNumOfNodes; }
+    // prints frontier and explored lists
+    // for debugging
+    void printDetails(std::list<Node*> aFrontier, std::list<Point> aExplored);
 };

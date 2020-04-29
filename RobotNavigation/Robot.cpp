@@ -2,10 +2,10 @@
 #include "Node.h"
 using namespace std;
 
-constexpr unsigned c_cellSize = 60;
-constexpr unsigned c_spacer = 3;
+constexpr unsigned c_cellSize = 40;
+constexpr unsigned c_spacer = 2;
 
-Robot::Robot(Point aInitialPoint, string aMethod)
+Robot::Robot(Point aInitialPoint, string aFileName, string aMethod)
 {
     fInitialNode = new Node(aInitialPoint, NULL, "Initial");
     if (aMethod == "dfs")
@@ -20,7 +20,7 @@ Robot::Robot(Point aInitialPoint, string aMethod)
     {
         fSearchMethod = new GBFSearch();
     }
-    else if (aMethod == "ass")
+    else if (aMethod == "as")
     {
         fSearchMethod = new AStarSearch();
     }
@@ -28,7 +28,9 @@ Robot::Robot(Point aInitialPoint, string aMethod)
     {
         throw std::runtime_error("Not a valid search method.\n");
     }
-    
+    fMethod = aMethod;
+    fFileName = aFileName;
+    fSolution = nullptr;
 }
 
 void Robot::search(Map aMap)
@@ -94,11 +96,6 @@ string Robot::getPath()
     return lResult;
 }
 
-string Robot::getMethod()
-{
-    return string();
-}
-
 unsigned Robot::getNumOfNodes()
 {
     return fSearchMethod->getNumOfNodes();
@@ -106,9 +103,31 @@ unsigned Robot::getNumOfNodes()
 
 bool Robot::goalFound()
 {
-    if (fSolution->getAction() != "No solution found")
+    if (fSolution->getAction() != "No solution found.")
     {
         return true;
     }
     return false;
+}
+
+ostream& operator<<(ostream& aOstream, Robot& aRobot)
+{
+    if (!aRobot.goalFound())
+    {
+        aOstream << aRobot.fSolution->getAction();
+    }
+    else
+    {
+        aOstream << aRobot.fFileName << " " << aRobot.fMethod << " " << aRobot.getNumOfNodes() << endl;
+        string lPath = aRobot.fSolution->getAction() + "; ";
+        for (Node* n : aRobot.fSolution->getPredecessors())
+        {
+            if (n->getParent() != NULL)
+            {
+                lPath = n->getAction() + "; " + lPath;
+            }
+        }
+        aOstream << lPath;
+    }
+    return aOstream;
 }

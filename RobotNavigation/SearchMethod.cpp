@@ -39,12 +39,6 @@ list<pair<string, Point>> SearchMethod::getActions(Map aMap, Point aPoint)
         lActions.push_back(make_pair("right", lPoint));
     }
 
-    for (auto const& x : lActions)
-    {
-        cout << x.first << " ";
-    }
-    cout << endl;
-
     return lActions;
 }
 
@@ -94,4 +88,19 @@ Node* SearchMethod::search(Map aMap, Node* aInitialNode)
 {
     std::cout << "test1";
     return new Node();
+}
+
+void SearchMethod::printDetails(list<Node*> aFrontier, list<Point> aExplored)
+{
+    cout << "Explored: ";
+    for (Point p : aExplored)
+    {
+        cout << p.x << "," << p.y << " ";
+    }
+    cout << endl << "Frontier: ";
+    for (Node* n : aFrontier)
+    {
+        cout << n->getState().x << "," << n->getState().y << " ";
+    }
+    cout << endl;
 }

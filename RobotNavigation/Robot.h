@@ -15,14 +15,16 @@ private:
     Node* fInitialNode;
     SearchMethod* fSearchMethod;
     std::string fMethod;
+    std::string fFileName;
     Node* fSolution;
 public:
-    Robot(Point aInitialPoint, std::string aMethod);
+    Robot(Point aInitialPoint, std::string aFileName, std::string aMethod);
     
     void search(Map aMap);
     void draw(sf::RenderWindow& aWindow);
     std::string getPath();
-    std::string getMethod();
     unsigned getNumOfNodes();
     bool goalFound();
+
+    friend std::ostream& operator<<(std::ostream& aOstream, Robot& aRobot);
 };

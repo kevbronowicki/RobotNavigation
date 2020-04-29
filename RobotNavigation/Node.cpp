@@ -5,7 +5,7 @@ Node::Node()
 {
     fState = { 0, 0 };
     fParent = NULL;
-    fAction = "No solution found";
+    fAction = "No solution found.";
     fCost = 0;
     fDistance = 0;
 }

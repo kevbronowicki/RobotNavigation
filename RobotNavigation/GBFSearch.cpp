@@ -16,18 +16,6 @@ Node* GBFSearch::search(Map aMap, Node* aInitialNode)
     fNumOfNodes++;
     while (!fFrontier.empty())
     {
-        cout << "explored: ";
-        for (Point p : fExplored)
-        {
-            cout << p.x << "," << p.y << " ";
-        }
-        cout << endl << "frontier: ";
-        for (Node* n : fFrontier)
-        {
-            cout << n->getState().x << "," << n->getState().y << " ";
-        }
-        cout << endl;
-
         lNode = fFrontier.front();
         fFrontier.pop_front();
         fExplored.push_back(lNode->getState());

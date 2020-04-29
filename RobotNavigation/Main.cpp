@@ -8,6 +8,7 @@
 using namespace std;
 
 // Loads map data from text file of passed name
+// Sets passed initial point as found in file and returns map data
 Map readMapData(string aFileName, Point& aPoint);
 
 // arv[1] = file name, arv[2] = search method
@@ -16,9 +17,19 @@ int main(int argc, char* argv[])
     if (argc < 3) 
     {
         cerr << "Argumens missing" << endl;
-        cerr << "Call program using the following format: search <filename> <method>" 
+        cerr << "Call program using the following format: search <filename> <method> [gui]" 
              << endl;
         return 1;               // program failed
+    }
+    bool lDrawGUI = false;
+    // check to draw gui
+    if (argc == 4)
+    {
+        string temp = argv[3];
+        if (temp == "gui")
+        {
+            lDrawGUI = true;
+        }
     }
     
     Point lInitialState;
@@ -27,29 +38,34 @@ int main(int argc, char* argv[])
     cout << lMap << endl;
     try
     {
-        Robot lRobot(lInitialState, argv[2]);
+        Robot lRobot(lInitialState, argv[1], argv[2]);
         lRobot.search(lMap);
-        cout << lRobot.getPath() << endl;
+        // print solution
+        cout << lRobot << endl;
 
-        sf::RenderWindow window(sf::VideoMode(100, 100), "Robot Navigation");
-        while (window.isOpen())
+        // draw gui if requested and goal found
+        if (lRobot.goalFound() && lDrawGUI)
         {
-            // check for "close request" of window and close if requested
-            sf::Event event;
-            while (window.pollEvent(event))
+            sf::RenderWindow window(sf::VideoMode(100, 100), "Robot Navigation");
+            while (window.isOpen())
             {
-                if (event.type == sf::Event::Closed)
-                    window.close();
+                // check for "close request" of window and close if requested
+                sf::Event event;
+                while (window.pollEvent(event))
+                {
+                    if (event.type == sf::Event::Closed)
+                        window.close();
+                }
+
+                // clear the window with black color
+                window.clear(sf::Color::Black);
+
+                // draw objects
+                lMap.draw(window);
+                lRobot.draw(window);
+                // end the current frame
+                window.display();
             }
-
-            // clear the window with black color
-            window.clear(sf::Color::Black);
-
-            // draw objects
-            lMap.draw(window);
-            lRobot.draw(window);
-            // end the current frame
-            window.display();
         }
     }
     catch (exception e)
@@ -71,7 +87,7 @@ Map readMapData(string aFileName, Point& aPoint)
     if (!lInput.good()) 
     {
         cerr << "Cannot open input file: " << aFileName << endl;
-        exit(2);// program failed (input)
+        exit(2); // program failed (input)
     }
     else 
     {
@@ -91,9 +107,10 @@ Map readMapData(string aFileName, Point& aPoint)
         getline(lInput, lReadLine);
         istringstream lStringStream(lReadLine); // create string stream from read line for formatting
         string lPart; // store current part of stream
+        // loop though groupings "(7,0)", "|" and "(10,3)"
         while (lStringStream >> lPart) 
         {
-            if (lPart != "|") 
+            if (lPart != "|")
             {
                 istringstream lStringPart(lPart); // convert string to stream for further formatting
                 lStringPart >> lChar >> lPoint.x >> lChar >> lPoint.y >> lChar; // seperate char from ints
