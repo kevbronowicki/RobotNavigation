@@ -3,14 +3,14 @@
 #include "Node.h"
 #include <list>
 
-class DFSearch : public SearchMethod
+class IDSearch : public SearchMethod
 {
 private:
-    std::list<Node*> fFrontier; // implement stack
+    std::list<Node*> fFrontier;
     std::list<Point> fExplored;
 
 public:
-    DFSearch();
+    IDSearch();
 
     Node* search(Map aMap, Node* aInitialNode) override;
 };

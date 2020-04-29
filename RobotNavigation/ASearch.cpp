@@ -1,12 +1,12 @@
-#include "AStarSearch.h"
+#include "ASearch.h"
 
 using namespace std;
 
-AStarSearch::AStarSearch()
+ASearch::ASearch()
 {
 }
 
-Node* AStarSearch::search(Map aMap, Node* aInitialNode)
+Node* ASearch::search(Map aMap, Node* aInitialNode)
 {
     Node* lNode;
     if (aMap.getStatus(aInitialNode->getState()) == Goal)

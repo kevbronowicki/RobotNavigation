@@ -39,7 +39,10 @@
     <ClCompile Include="GBFSearch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AStarSearch.cpp">
+    <ClCompile Include="ASearch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IDSearch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +71,10 @@
     <ClInclude Include="GBFSearch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AStarSearch.h">
+    <ClInclude Include="IDSearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ASearch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

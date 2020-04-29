@@ -20,11 +20,11 @@ Node* DFSearch::search(Map aMap, Node* aInitialNode)
         fFrontier.pop_front();
         fExplored.push_back(lNode->getState());
         bool lRepeated = false;
-        // override expand to reverse successor list, as successors
+        // reverse successor list, as successors
         // are pushed to front of frontier list
-        list<Node*> lExpand = expand(lNode, aMap);
-        lExpand.reverse();
-        for (Node* child : lExpand)
+        list<Node*> lSuccessors = expand(lNode, aMap);
+        lSuccessors.reverse();
+        for (Node* child : lSuccessors)
         {
             for (Node* n : child->getPredecessors())
             {

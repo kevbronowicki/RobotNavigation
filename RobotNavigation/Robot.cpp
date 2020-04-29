@@ -22,7 +22,11 @@ Robot::Robot(Point aInitialPoint, string aFileName, string aMethod)
     }
     else if (aMethod == "as")
     {
-        fSearchMethod = new AStarSearch();
+        fSearchMethod = new ASearch();
+    }
+    else if (aMethod == "ids")
+    {
+        fSearchMethod = new IDSearch();
     }
     else
     {

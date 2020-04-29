@@ -3,13 +3,13 @@
 #include "Node.h"
 #include <list>
 
-class AStarSearch : public SearchMethod
+class ASearch : public SearchMethod
 {
 private:
     std::list<Node*> fFrontier;
     std::list<Point> fExplored;
 public:
-    AStarSearch();
+    ASearch();
 
     Node* search(Map aMap, Node* aInitialNode) override;
 };
