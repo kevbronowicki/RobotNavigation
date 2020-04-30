@@ -151,6 +151,7 @@
     <ClCompile Include="BFSearch.cpp" />
     <ClCompile Include="DFSearch.cpp" />
     <ClCompile Include="GBFSearch.cpp" />
+    <ClCompile Include="IDASearch.cpp" />
     <ClCompile Include="IDSearch.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="BFSearch.h" />
     <ClInclude Include="DFSearch.h" />
     <ClInclude Include="GBFSearch.h" />
+    <ClInclude Include="IDASearch.h" />
     <ClInclude Include="IDSearch.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Node.h" />

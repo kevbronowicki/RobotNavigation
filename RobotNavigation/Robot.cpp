@@ -28,6 +28,10 @@ Robot::Robot(Point aInitialPoint, string aFileName, string aMethod)
     {
         fSearchMethod = new IDSearch();
     }
+    else if (aMethod == "idas")
+    {
+        fSearchMethod = new IDASearch();
+    }
     else
     {
         throw std::runtime_error("Not a valid search method.\n");
@@ -116,13 +120,13 @@ bool Robot::goalFound()
 
 ostream& operator<<(ostream& aOstream, Robot& aRobot)
 {
+    aOstream << aRobot.fFileName << " " << aRobot.fMethod << " " << aRobot.getNumOfNodes() << endl;
     if (!aRobot.goalFound())
     {
         aOstream << aRobot.fSolution->getAction();
     }
     else
     {
-        aOstream << aRobot.fFileName << " " << aRobot.fMethod << " " << aRobot.getNumOfNodes() << endl;
         string lPath = aRobot.fSolution->getAction() + "; ";
         for (Node* n : aRobot.fSolution->getPredecessors())
         {

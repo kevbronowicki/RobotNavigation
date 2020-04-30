@@ -8,6 +8,7 @@
 #include "GBFSearch.h"
 #include "ASearch.h"
 #include "IDSearch.h"
+#include "IDASearch.h"
 #include <list>
 
 class Robot
