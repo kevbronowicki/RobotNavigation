@@ -2,9 +2,6 @@
 
 using namespace std;
 
-constexpr unsigned c_cellSize = 40;
-constexpr unsigned c_spacer = 2;
-
 Map::Map() 
 {
     fWidth = 0;
@@ -54,6 +51,10 @@ Status Map::getStatus(Point aPoint)
 
 void Map::draw(sf::RenderWindow& aWindow) 
 {
+    // constants for cell size and space between cells
+    constexpr unsigned c_cellSize = 30;
+    constexpr unsigned c_spacer = 2;
+
     // flattened 2d vector of cells to be drawn
     vector<sf::RectangleShape> lCells(fWidth * fHeight);
 

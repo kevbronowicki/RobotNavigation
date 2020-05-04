@@ -22,24 +22,6 @@ Node* BFSearch::search(Map aMap, Node* aInitialNode)
         bool lRepeated = false;
         for (Node* child : expand(lNode, aMap))
         {
-            /*for (Point p : fExplored)
-            {
-                if (child->getState() == p)
-                {
-                    lRepeated = true;
-                    break;
-                }
-                    
-            }
-            for (Node* n : fFrontier)
-            {
-                if (child->getState() == n->getState())
-                {
-                    lRepeated = true;
-                    break;
-                }
-            }*/
-
             for (Node* n : child->getPredecessors())
             {
                 if (child->getState() == n->getState())

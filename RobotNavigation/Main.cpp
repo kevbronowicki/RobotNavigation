@@ -35,7 +35,6 @@ int main(int argc, char* argv[])
     Point lInitialState;
     Map lMap = readMapData(argv[1], lInitialState);
 
-    cout << lMap << endl;
     try
     {
         Robot lRobot(lInitialState, argv[1], argv[2]);

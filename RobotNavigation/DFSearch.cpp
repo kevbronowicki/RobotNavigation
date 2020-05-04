@@ -48,11 +48,11 @@ Node* DFSearch::search(Map aMap, Node* aInitialNode)
             }
             else
             {
+                // push front as LIFO list
                 fFrontier.push_front(child);
                 fNumOfNodes++;
             }
         }
-
     }
     // return empty node when fail to find solution
     return new Node();

@@ -1,3 +1,4 @@
+/* A* Search */
 #pragma once
 #include "SearchMethod.h"
 #include "Node.h"
@@ -5,9 +6,6 @@
 
 class ASearch : public SearchMethod
 {
-private:
-    std::list<Node*> fFrontier;
-    std::list<Point> fExplored;
 public:
     ASearch();
 

@@ -76,10 +76,6 @@ Node* IDASearch::search(Map aMap, Node* aInitialNode)
             }
             fFrontier.sort([](Node* a, Node* b) { return a->getDistance() + a->getCost() < b->getDistance() + b->getCost(); });
         }
-        // increase threshold
-        //cout << "Last threshold: " << lLastThreshold << endl;
-        //cout << "Next threshold: " << lNextThreshold << endl;
-
         // if the threshold does not increase
         // then the whole map has been explored and there is no solution
         if (lLastThreshold != lNextThreshold)

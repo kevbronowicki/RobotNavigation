@@ -35,3 +35,6 @@
 Debug/
 x64/
 .vs/
+packages/
+Release/
+UnitTesting/

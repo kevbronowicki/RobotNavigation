@@ -5,35 +5,35 @@
 
 using namespace std;
 
-list<pair<string, Point>> SearchMethod::getActions(Map aMap, Point aPoint)
+list<pair<string, Point>> SearchMethod::getActions(Map aMap, Point aState)
 {
     Point lPoint;
     list<pair<string, Point>> lActions;
 
     // check up
-    lPoint.x = aPoint.x;
-    lPoint.y = aPoint.y - 1;
+    lPoint.x = aState.x;
+    lPoint.y = aState.y - 1;
     if (!(aMap.getStatus(lPoint) == Nil || aMap.getStatus(lPoint) == Wall))
     {
         lActions.push_back(make_pair("up", lPoint));
     }
     // check left
-    lPoint.x = aPoint.x - 1;
-    lPoint.y = aPoint.y;
+    lPoint.x = aState.x - 1;
+    lPoint.y = aState.y;
     if (!(aMap.getStatus(lPoint) == Nil || aMap.getStatus(lPoint) == Wall))
     {
         lActions.push_back(make_pair("left", lPoint));
     }
     // check down
-    lPoint.x = aPoint.x;
-    lPoint.y = aPoint.y + 1;
+    lPoint.x = aState.x;
+    lPoint.y = aState.y + 1;
     if (!(aMap.getStatus(lPoint) == Nil || aMap.getStatus(lPoint) == Wall))
     {
         lActions.push_back(make_pair("down", lPoint));
     }
     // check right
-    lPoint.x = aPoint.x + 1;
-    lPoint.y = aPoint.y;
+    lPoint.x = aState.x + 1;
+    lPoint.y = aState.y;
     if (!(aMap.getStatus(lPoint) == Nil || aMap.getStatus(lPoint) == Wall))
     {
         lActions.push_back(make_pair("right", lPoint));
@@ -73,7 +73,7 @@ list<Node*> SearchMethod::expand(Node* aNode, Map aMap, bool aInformed)
     {
         for (auto const& p : lActions)
         {
-            lSuccessors.push_back(new Node(p.second, aNode, p.first));
+            lSuccessors.push_back(new Node(p.second, aNode, p.first, aNode->getCost()+1));
         }
     }
     return lSuccessors;

@@ -15,18 +15,21 @@ class Robot
 {
 private:
     Node* fInitialNode;
+    Node* fSolution;
     SearchMethod* fSearchMethod;
     std::string fMethod;
     std::string fFileName;
-    Node* fSolution;
+
 public:
     Robot(Point aInitialPoint, std::string aFileName, std::string aMethod);
     
     void search(Map aMap);
     void draw(sf::RenderWindow& aWindow);
     std::string getPath();
+    int getCost();
     unsigned getNumOfNodes();
     bool goalFound();
 
+    // used to send output solution of robot to cout
     friend std::ostream& operator<<(std::ostream& aOstream, Robot& aRobot);
 };

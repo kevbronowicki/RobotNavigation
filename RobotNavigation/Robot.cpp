@@ -1,34 +1,33 @@
 #include "Robot.h"
-#include "Node.h"
-using namespace std;
 
-constexpr unsigned c_cellSize = 40;
-constexpr unsigned c_spacer = 2;
+using namespace std;
 
 Robot::Robot(Point aInitialPoint, string aFileName, string aMethod)
 {
     fInitialNode = new Node(aInitialPoint, NULL, "Initial");
-    if (aMethod == "dfs")
+
+    // set search method of robot based on passed method code
+    if (aMethod == "DFS")
     {
         fSearchMethod = new DFSearch();
     }
-    else if (aMethod == "bfs")
+    else if (aMethod == "BFS")
     {
         fSearchMethod = new BFSearch();
     }
-    else if (aMethod == "gbfs")
+    else if (aMethod == "GBFS")
     {
         fSearchMethod = new GBFSearch();
     }
-    else if (aMethod == "as")
+    else if (aMethod == "AS")
     {
         fSearchMethod = new ASearch();
     }
-    else if (aMethod == "ids")
+    else if (aMethod == "IDS")
     {
         fSearchMethod = new IDSearch();
     }
-    else if (aMethod == "idas")
+    else if (aMethod == "IDAS")
     {
         fSearchMethod = new IDASearch();
     }
@@ -48,6 +47,10 @@ void Robot::search(Map aMap)
 
 void Robot::draw(sf::RenderWindow& aWindow)
 {
+    // constants for cell size and space between cells
+    constexpr unsigned c_cellSize = 30;
+    constexpr unsigned c_spacer = 2;
+
     // flattened 2d vector of path to be drawn
     list<sf::RectangleShape> lPath;
     // default cell for changing and adding to vector
@@ -86,11 +89,10 @@ string Robot::getPath()
     string lResult = "";
     if (!goalFound())
     {
-        lResult = "No solution found";
+        lResult = "No solution found.";
     }
     else
     {
-        cout << "Number of nodes: " << fSearchMethod->getNumOfNodes() << endl;
         lResult = fSolution->getAction() + "; ";
         for (Node* n : fSolution->getPredecessors())
         {
@@ -102,6 +104,11 @@ string Robot::getPath()
         
     }
     return lResult;
+}
+
+int Robot::getCost()
+{
+    return fSolution->getCost();
 }
 
 unsigned Robot::getNumOfNodes()
@@ -121,21 +128,6 @@ bool Robot::goalFound()
 ostream& operator<<(ostream& aOstream, Robot& aRobot)
 {
     aOstream << aRobot.fFileName << " " << aRobot.fMethod << " " << aRobot.getNumOfNodes() << endl;
-    if (!aRobot.goalFound())
-    {
-        aOstream << aRobot.fSolution->getAction();
-    }
-    else
-    {
-        string lPath = aRobot.fSolution->getAction() + "; ";
-        for (Node* n : aRobot.fSolution->getPredecessors())
-        {
-            if (n->getParent() != NULL)
-            {
-                lPath = n->getAction() + "; " + lPath;
-            }
-        }
-        aOstream << lPath;
-    }
+    aOstream << aRobot.getPath();
     return aOstream;
 }

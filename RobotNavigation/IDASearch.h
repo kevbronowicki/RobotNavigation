@@ -1,4 +1,4 @@
-/* Iterative Deepening A* Search */
+/* Iterative-deepening A* Search */
 #pragma once
 #include "SearchMethod.h"
 #include "Node.h"
@@ -6,9 +6,6 @@
 
 class IDASearch : public SearchMethod
 {
-private:
-    std::list<Node*> fFrontier;
-    std::list<Point> fExplored;
 public:
     IDASearch();
 

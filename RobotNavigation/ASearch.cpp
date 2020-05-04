@@ -48,6 +48,7 @@ Node* ASearch::search(Map aMap, Node* aInitialNode)
                 fNumOfNodes++;
             }
         }
+        // sort frontier by lowest f(n)
         fFrontier.sort([](Node* a, Node* b) { return a->getDistance() + a->getCost() < b->getDistance() + b->getCost(); });
     }
     // return empty node when fail to find solution

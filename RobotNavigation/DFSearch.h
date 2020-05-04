@@ -1,3 +1,4 @@
+/* Depth-first Search */
 #pragma once
 #include "SearchMethod.h"
 #include "Node.h"
@@ -5,10 +6,6 @@
 
 class DFSearch : public SearchMethod
 {
-private:
-    std::list<Node*> fFrontier; // implement stack
-    std::list<Point> fExplored;
-
 public:
     DFSearch();
 

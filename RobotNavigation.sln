@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RobotNavigation", "RobotNavigation\RobotNavigation.vcxproj", "{2E33AF52-33D6-49A2-AB84-0A6BC51B0164}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTesting", "UnitTesting\UnitTesting.vcxproj", "{7E5EA70D-9737-4855-A394-68544A16B842}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{2E33AF52-33D6-49A2-AB84-0A6BC51B0164}.Release|x64.Build.0 = Release|x64
 		{2E33AF52-33D6-49A2-AB84-0A6BC51B0164}.Release|x86.ActiveCfg = Release|Win32
 		{2E33AF52-33D6-49A2-AB84-0A6BC51B0164}.Release|x86.Build.0 = Release|Win32
+		{7E5EA70D-9737-4855-A394-68544A16B842}.Debug|x64.ActiveCfg = Debug|x64
+		{7E5EA70D-9737-4855-A394-68544A16B842}.Debug|x64.Build.0 = Debug|x64
+		{7E5EA70D-9737-4855-A394-68544A16B842}.Debug|x86.ActiveCfg = Debug|Win32
+		{7E5EA70D-9737-4855-A394-68544A16B842}.Debug|x86.Build.0 = Debug|Win32
+		{7E5EA70D-9737-4855-A394-68544A16B842}.Release|x64.ActiveCfg = Release|x64
+		{7E5EA70D-9737-4855-A394-68544A16B842}.Release|x64.Build.0 = Release|x64
+		{7E5EA70D-9737-4855-A394-68544A16B842}.Release|x86.ActiveCfg = Release|Win32
+		{7E5EA70D-9737-4855-A394-68544A16B842}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
